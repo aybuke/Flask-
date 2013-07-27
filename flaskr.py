@@ -1,7 +1,7 @@
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack
-
+import time
 # configuration
 DATABASE = '/tmp/flaskr.db'
 DEBUG = True
@@ -75,9 +75,14 @@ def login():
             error = 'Invalid password'
         else:
             session['logged_in'] = True
+            
+            flash(time.ctime())
             flash('You were logged in')
             return redirect(url_for('show_entries'))
+
     return render_template('login.html', error=error)
+
+     
 
 
 @app.route('/logout')
@@ -87,9 +92,10 @@ def logout():
     return redirect(url_for('show_entries'))
 
 @app.route('/about')
-
 def about():
-  return render_template('show_entries.html')
+    return render_template('show_entries.html')
+
+
 
 if __name__ == '__main__':
     init_db()
