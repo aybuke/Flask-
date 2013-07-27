@@ -8,6 +8,7 @@
         <dt>Text:
         <dd><textarea name=text rows=5 cols=40></textarea>
         <dd><input type=submit value=Share>
+
       </dl>
     </form>
   {% endif %}
@@ -18,5 +19,9 @@
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
   </ul>
+  <form action ="{{url_for('about') }}" method=get>
+  <dl>
+    <dt>Flask:
+    <dd><input type="button" onclick="location.href='http://flask.pocoo.org' " value="about">
 {% endblock %}
 
